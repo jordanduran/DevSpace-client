@@ -4,13 +4,13 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Developers from './components/layout/Developers';
 import CommentForm from './components/post/CommentForm';
 
-
-
-const App = () => (
-  // <Provider store={store}>
-    <Router>
+class App extends React.Component {
+  render() {
+    return(
+      <Router>
       <Fragment>
         <Navbar />
         <Route exact path='/' component={Landing} />
@@ -18,12 +18,14 @@ const App = () => (
           <Switch>
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/developers' component={Developers} />
             <Route exact path='/posts' component={CommentForm} />
           </Switch>
         </section>
       </Fragment>
     </Router>
-  // </Provider>
-);
+    )
+  }
+}
 
 export default App;
