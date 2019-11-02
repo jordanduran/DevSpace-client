@@ -9,7 +9,7 @@ class Landing extends React.Component {
           <div className='landing-inner'>
             <h1 className='x-large'>Developer Space</h1>
             <p className='lead'>
-              Create a developer profile/portfolio, share posts and get help
+              A space where developers can create a profile/portfolio, share posts and get help
               from other developers
             </p>
             <div className='buttons'>

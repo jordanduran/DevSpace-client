@@ -8,23 +8,46 @@ import Developers from './components/layout/Developers';
 import CommentForm from './components/post/CommentForm';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: []
+    };
+  }
+
+  getUsers = () => {
+    fetch('http://localhost:8000/api/users')
+      .then(res => res.json())
+      .then(users => {
+        this.setState({
+          users
+        });
+        return users;
+      })
+      .catch(err => console.log(err));
+  };
+
+  componentDidMount() {
+    Promise.resolve(this.getUsers())
+  }
+
   render() {
-    return(
+    return (
       <Router>
-      <Fragment>
-        <Navbar />
-        <Route exact path='/' component={Landing} />
-        <section className='container'>
-          <Switch>
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/developers' component={Developers} />
-            <Route exact path='/posts' component={CommentForm} />
-          </Switch>
-        </section>
-      </Fragment>
-    </Router>
-    )
+        <Fragment>
+          <Navbar />
+          <Route exact path='/' component={Landing} />
+          <section className='container'>
+            <Switch>
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/developers' component={Developers} />
+              <Route exact path='/posts' component={CommentForm} />
+            </Switch>
+          </section>
+        </Fragment>
+      </Router>
+    );
   }
 }
 
