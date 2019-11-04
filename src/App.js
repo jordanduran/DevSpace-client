@@ -6,6 +6,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Developers from './components/layout/Developers';
 import CommentForm from './components/post/CommentForm';
+import UsersContext from './context/UsersContext';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,7 +33,12 @@ class App extends React.Component {
   }
 
   render() {
+    const value = {
+      users: this.state.users
+    }
+    
     return (
+      <UsersContext.Provider value={value}>
       <Router>
         <Fragment>
           <Navbar />
@@ -47,6 +53,7 @@ class App extends React.Component {
           </section>
         </Fragment>
       </Router>
+      </UsersContext.Provider>
     );
   }
 }
