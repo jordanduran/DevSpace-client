@@ -1,6 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 class Register extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      password2: ''
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    fetch('http://localhost:8000/auth/signup', {
+      method: 'post',
+      body: JSON.stringify({
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        localStorage.setItem('user', data.id);
+        window.location.replace('/dashboard')
+        console.log(data)
+      });
+  }
+
+  Register() {
+    console.log('this.state', this.state);
+  }
+
   render() {
     return (
       <div>
@@ -9,12 +49,29 @@ class Register extends React.Component {
         <p className='lead'>
           <i className='fas fa-user'></i> Create Your Account
         </p>
-        <form className='form' action='create-profile.html'>
+        <form
+          className='form'
+          onSubmit={this.handleSubmit}
+          action='create-profile.html'
+        >
           <div className='form-group'>
-            <input type='text' placeholder='Name' name='name' required />
+            <input
+              type='text'
+              placeholder='Name'
+              name='name'
+              required
+              onChange={event => this.setState({ name: event.target.value })}
+              value={this.state.value}
+            />
           </div>
           <div className='form-group'>
-            <input type='email' placeholder='Email Address' name='email' />
+            <input
+              type='email'
+              placeholder='Email Address'
+              name='email'
+              onChange={event => this.setState({ email: event.target.value })}
+              value={this.state.value}
+            />
             <small className='form-text'>
               This site uses Gravatar so if you want a profile image, use a
               Gravatar email
@@ -26,6 +83,11 @@ class Register extends React.Component {
               placeholder='Password'
               name='password'
               minLength='6'
+              required
+              onChange={event =>
+                this.setState({ password: event.target.value })
+              }
+              value={this.state.value}
             />
           </div>
           <div className='form-group'>
@@ -34,9 +96,18 @@ class Register extends React.Component {
               placeholder='Confirm Password'
               name='password2'
               minLength='6'
+              onChange={event =>
+                this.setState({ password2: event.target.value })
+              }
+              value={this.state.value}
             />
           </div>
-          <input type='submit' className='btn btn-primary' value='Register' />
+          <input
+            type='submit'
+            className='btn btn-primary'
+            value='Submit'
+            onClick={() => this.Register()}
+          />
         </form>
         <p className='my-1'>
           Already have an account? <a href='/login'>Sign In</a>

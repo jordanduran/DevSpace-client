@@ -8,7 +8,7 @@ class Login extends React.Component {
         <p className='lead'>
           <i className='fas fa-user'></i> Sign into Your Account
         </p>
-        <form className='form' action='dashboard.html'>
+        <form className='form' onSubmit={this.onSubmit} action='dashboard.html'>
           <div className='form-group'>
             <input
               type='email'

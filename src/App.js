@@ -5,14 +5,16 @@ import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Developers from './components/layout/Developers';
-import CommentForm from './components/post/CommentForm';
+import Posts from './components/post/Posts';
 import UsersContext from './context/UsersContext';
+import Dashboard from './components/dashboard/Dashboard';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      user: {}
     };
   }
 
@@ -48,7 +50,8 @@ class App extends React.Component {
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/developers' component={Developers} />
-              <Route exact path='/posts' component={CommentForm} />
+              <Route exact path='/posts' component={Posts} />
+              <Route exact path='/dashboard' component={Dashboard} />
             </Switch>
           </section>
         </Fragment>
