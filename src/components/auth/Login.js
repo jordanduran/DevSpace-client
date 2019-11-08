@@ -1,6 +1,42 @@
 import React from 'react';
+import UsersContext from '../../context/UsersContext';
 
 class Login extends React.Component {
+  static contextType = UsersContext;
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    fetch('http://localhost:8000/auth/login', {
+      method: 'post',
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        // localStorage.setItem('user', data.id);
+        // window.location.replace('/dashboard')
+        this.context.setLoggedInUser(data.user);
+        this.props.history.push('/dashboard');
+      });
+  }
+
   render() {
     return (
       <div>
@@ -8,17 +44,26 @@ class Login extends React.Component {
         <p className='lead'>
           <i className='fas fa-user'></i> Sign into Your Account
         </p>
-        <form className='form' onSubmit={this.onSubmit} action='dashboard.html'>
+        <form className='form' onSubmit={this.handleSubmit}>
           <div className='form-group'>
             <input
               type='email'
               placeholder='Email Address'
               name='email'
               required
+              onChange={event => this.setState({ email: event.target.value })}
             />
           </div>
           <div className='form-group'>
-            <input type='password' placeholder='Password' name='password' />
+            <input
+              type='password'
+              placeholder='Password'
+              name='password'
+              required
+              onChange={event =>
+                this.setState({ password: event.target.value })
+              }
+            />
           </div>
           <input type='submit' className='btn btn-primary' value='Login' />
         </form>
