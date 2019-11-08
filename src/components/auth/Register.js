@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import UsersContext from '../../context/UsersContext';
 
 class Register extends React.Component {
+  static contextType = UsersContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -31,9 +33,10 @@ class Register extends React.Component {
         return response.json();
       })
       .then(data => {
-        localStorage.setItem('user', data.id);
-        window.location.replace('/dashboard')
-        console.log(data)
+        // localStorage.setItem('user', data.id);
+        // window.location.replace('/dashboard')
+        this.context.setLoggedInUser(data.id);
+        this.props.history.push('/dashboard');
       });
   }
 

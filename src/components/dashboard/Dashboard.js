@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import UsersContext from '../../context/UsersContext';
+import { Redirect } from 'react-router-dom';
 
 class Dashboard extends React.Component {
+  static contextType = UsersContext;
   render() {
+    if(!this.context.loggedInUser) {
+      return <Redirect to='/' />
+    }
       return (
   <section className='container'>
     <h1 className='large text-primary'>Dashboard</h1>
     <p className='lead'>
-      <i className='fas fa-user'></i> Welcome John Doe
+      <i className='fas fa-user'></i> Welcome {this.context.loggedInUser.name}
     </p>
     <div className='dash-buttons'>
       <a href='edit-profile.html' className='btn btn-light'>

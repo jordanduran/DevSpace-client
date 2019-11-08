@@ -2,7 +2,7 @@ import React from 'react';
 import UsersContext from '../../context/UsersContext';
 
 class Developers extends React.Component {
-  static contextType = UsersContext
+  static contextType = UsersContext;
 
   renderUsers = () => {
     const { users } = this.context;

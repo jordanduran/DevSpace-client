@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       users: [],
-      user: {}
+      loggedInUser: null
     };
   }
 
@@ -36,7 +36,12 @@ class App extends React.Component {
 
   render() {
     const value = {
-      users: this.state.users
+      users: this.state.users,
+      loggedInUser: this.state.loggedInUser,
+      setLoggedInUser: (user) => {
+        this.setState({ loggedInUser: user });
+        console.log(this.state);
+      }
     }
     
     return (
