@@ -33,9 +33,9 @@ class Register extends React.Component {
         return response.json();
       })
       .then(data => {
-        // localStorage.setItem('user', data.id);
-        // window.location.replace('/dashboard')
-        this.context.setLoggedInUser(data.id);
+        console.log(data);
+        this.context.setLoggedInUser(data.id, 'Logged in!');
+
         this.props.history.push('/dashboard');
       });
   }

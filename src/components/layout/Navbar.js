@@ -19,7 +19,13 @@ class Navbar extends React.Component {
           {this.context.loginMessage === 'Logged in!' ? (
             <>
               <li>
-                <a href='login.html' title='Logout'>
+                <a href='login.html' title='Logout' onClick={
+                  (e) => {
+                    e.preventDefault()
+                    this.context.setLoggedInUser(null, 'loggedOut')
+                    this.props.history.push('/')
+                  }
+                }>
                   <i className='fas fa-sign-out-alt'></i>
                   <span className='hide-sm'>Logout</span>
                 </a>

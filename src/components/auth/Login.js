@@ -31,9 +31,6 @@ class Login extends React.Component {
         return response.json();
       })
       .then(data => {
-        console.log(data);
-        // localStorage.setItem('user', data.id);
-        // window.location.replace('/dashboard')
         this.context.setLoggedInUser(data.user, data.message);
         this.setState({ message: data.message }, () => {
           if (this.state.message !== 'Invalid login') {

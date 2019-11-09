@@ -9,6 +9,7 @@ import Posts from './components/post/Posts';
 import UsersContext from './context/UsersContext';
 import Dashboard from './components/dashboard/Dashboard';
 import EditProfile from './components/profiles/EditProfile';
+import PrivateOnlyRoute from './Utils/PrivateOnlyRoute';
 
 class App extends React.Component {
   constructor(props) {
@@ -72,7 +73,7 @@ class App extends React.Component {
       <UsersContext.Provider value={value}>
         <Router>
           <Fragment>
-            <Navbar />
+            <Route path='/' component={Navbar} />
             <Route exact path='/' component={Landing} />
             <section className='container'>
               <Switch>
@@ -93,7 +94,16 @@ class App extends React.Component {
                   }}
                 />
                 <Route exact path='/dashboard' component={Dashboard} />
-                <Route exact path='/edit-profile' component={EditProfile} />
+                <PrivateOnlyRoute exact path='/edit-profile' 
+                component={rprops => {
+                    return (
+                      <EditProfile
+                        rprops={rprops}
+                        loggedInUser={this.state.loggedInUser}
+                      />
+                    );
+                  }} 
+                loggedInUser={this.state.loggedInUser} />
               </Switch>
             </section>
           </Fragment>
