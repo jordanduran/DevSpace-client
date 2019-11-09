@@ -6,9 +6,6 @@ import UsersContext from '../../context/UsersContext';
 
 class Posts extends React.Component {
   static contextType = UsersContext;
-  constructor(props) {
-    super(props);
-  }
   renderPosts = () => {
     const { posts } = this.context;
     const { users } = this.props;

@@ -1,8 +1,5 @@
 import React from 'react';
-import Redirect from 'react-router-dom';
 import UsersContext from '../../context/UsersContext';
-import { thisExpression } from '@babel/types';
-import { userInfo } from 'os';
 
 class EditProfile extends React.Component {
   static contextType = UsersContext;

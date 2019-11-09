@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import UsersContext from '../../context/UsersContext';
 
 class Register extends React.Component {
@@ -25,7 +25,7 @@ class Register extends React.Component {
         password: this.state.password
       }),
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })

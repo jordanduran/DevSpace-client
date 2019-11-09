@@ -26,7 +26,6 @@ class App extends React.Component {
     fetch('http://localhost:8000/api/post')
       .then(res => res.json())
       .then(posts => {
-        console.log(posts);
         this.setState({
           posts
         });
