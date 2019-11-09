@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UsersContext from '../../context/UsersContext';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Dashboard extends React.Component {
   static contextType = UsersContext;
@@ -16,9 +16,9 @@ class Dashboard extends React.Component {
       <i className='fas fa-user'></i> Welcome {this.context.loggedInUser.name}
     </p>
     <div className='dash-buttons'>
-      <a href='edit-profile.html' className='btn btn-light'>
+      <Link to='/edit-profile' className='btn btn-light'>
         <i className='fas fa-user-circle text-primary'></i> Edit Profile
-      </a>
+      </Link>
       <a href='add-experience.html' className='btn btn-light'>
         <i className='fab fa-black-tie text-primary'></i> Add Experience
       </a>

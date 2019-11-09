@@ -8,14 +8,34 @@ import Developers from './components/layout/Developers';
 import Posts from './components/post/Posts';
 import UsersContext from './context/UsersContext';
 import Dashboard from './components/dashboard/Dashboard';
+import EditProfile from './components/profiles/EditProfile';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      loggedInUser: null
+      loggedInUser: null,
+      loginMessage: '',
+      posts: []
     };
+  }
+
+  getPosts = () => {
+    fetch('http://localhost:8000/api/post')
+      .then(res => res.json())
+      .then(posts => {
+        console.log(posts);
+        this.setState({
+          posts
+        });
+        return posts;
+      })
+      .catch(err => console.log(err));
+  };
+
+  setPosts = (posts) => {
+    this.setState({ posts });
   }
 
   getUsers = () => {
@@ -31,36 +51,53 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    Promise.resolve(this.getUsers())
+    this.getUsers();
+    this.getPosts();
   }
 
   render() {
     const value = {
+      posts: this.state.posts,
       users: this.state.users,
+      loginMessage: this.state.loginMessage,
       loggedInUser: this.state.loggedInUser,
-      setLoggedInUser: (user) => {
-        this.setState({ loggedInUser: user });
+      setLoggedInUser: (user, message) => {
+        this.setState({ loggedInUser: user, loginMessage: message });
         console.log(this.state);
-      }
-    }
-    
+      },
+      setPosts: this.setPosts
+    };
+
     return (
       <UsersContext.Provider value={value}>
-      <Router>
-        <Fragment>
-          <Navbar />
-          <Route exact path='/' component={Landing} />
-          <section className='container'>
-            <Switch>
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/developers' component={Developers} />
-              <Route exact path='/posts' component={Posts} />
-              <Route exact path='/dashboard' component={Dashboard} />
-            </Switch>
-          </section>
-        </Fragment>
-      </Router>
+        <Router>
+          <Fragment>
+            <Navbar />
+            <Route exact path='/' component={Landing} />
+            <section className='container'>
+              <Switch>
+                <Route exact path='/register' component={Register} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/developers' component={Developers} />
+                <Route
+                  exact
+                  path='/posts'
+                  component={rprops => {
+                    return (
+                      <Posts
+                        rprops={rprops}
+                        users={this.state.users}
+                        loggedInUser={this.state.loggedInUser}
+                      />
+                    );
+                  }}
+                />
+                <Route exact path='/dashboard' component={Dashboard} />
+                <Route exact path='/edit-profile' component={EditProfile} />
+              </Switch>
+            </section>
+          </Fragment>
+        </Router>
       </UsersContext.Provider>
     );
   }

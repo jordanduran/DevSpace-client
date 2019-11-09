@@ -7,7 +7,8 @@ class Login extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      message: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,10 +31,15 @@ class Login extends React.Component {
         return response.json();
       })
       .then(data => {
+        console.log(data);
         // localStorage.setItem('user', data.id);
         // window.location.replace('/dashboard')
-        this.context.setLoggedInUser(data.user);
-        this.props.history.push('/dashboard');
+        this.context.setLoggedInUser(data.user, data.message);
+        this.setState({ message: data.message }, () => {
+          if (this.state.message !== 'Invalid login') {
+            this.props.history.push('/dashboard');
+          }
+        });
       });
   }
 
@@ -65,6 +71,9 @@ class Login extends React.Component {
               }
             />
           </div>
+          {this.state.message === 'Invalid login' && (
+            <div className='error'>Invalid login</div>
+          )}
           <input type='submit' className='btn btn-primary' value='Login' />
         </form>
         <p className='my-1'>
