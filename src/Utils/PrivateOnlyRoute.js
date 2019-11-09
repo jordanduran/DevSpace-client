@@ -20,7 +20,3 @@ export default function PrivateRoute({ component, ...props }) {
     />
   );
 }
-
-function objectIsEmpty(obj) {
-  return Object.entries(obj).length === 0 && obj.constructor === Object;
-}

@@ -9,6 +9,7 @@ class EditProfile extends React.Component {
     const { loggedInUser } = props;
     this.state = {
       company: loggedInUser.company || '',
+      profileUpdated: '',
       website: loggedInUser.website || '',
       location: loggedInUser.location || '',
       bio: loggedInUser.bio || '',
@@ -32,10 +33,10 @@ class EditProfile extends React.Component {
     const linkedin_url = e.target['linkedin'].value;
     const instagram_url = e.target['instagram'].value;
     const { id } = this.context.loggedInUser;
-    console.log(id);
-    fetch(`http://localhost:8000/api/users/${id}`, {
-      method: 'patch',
+    const user = await fetch(`http://localhost:8000/api/users/${id}`, {
+      method: 'put',
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -67,6 +68,7 @@ class EditProfile extends React.Component {
       instagram_url
     };
     this.context.setLoggedInUser(updatedUser, 'Logged in!');
+    alert('Profile updated!');
   };
   render() {
     return (

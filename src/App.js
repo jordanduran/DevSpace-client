@@ -9,6 +9,7 @@ import Posts from './components/post/Posts';
 import UsersContext from './context/UsersContext';
 import Dashboard from './components/dashboard/Dashboard';
 import EditProfile from './components/profiles/EditProfile';
+import Profile from './components/profiles/Profile';
 import PrivateOnlyRoute from './Utils/PrivateOnlyRoute';
 
 class App extends React.Component {
@@ -34,9 +35,9 @@ class App extends React.Component {
       .catch(err => console.log(err));
   };
 
-  setPosts = (posts) => {
+  setPosts = posts => {
     this.setState({ posts });
-  }
+  };
 
   getUsers = () => {
     fetch('http://localhost:8000/api/users')
@@ -63,7 +64,6 @@ class App extends React.Component {
       loggedInUser: this.state.loggedInUser,
       setLoggedInUser: (user, message) => {
         this.setState({ loggedInUser: user, loginMessage: message });
-        console.log(this.state);
       },
       setPosts: this.setPosts
     };
@@ -79,6 +79,7 @@ class App extends React.Component {
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/developers' component={Developers} />
+                <Route exact path='/profile/:id' component={Profile} />
                 <Route
                   exact
                   path='/posts'
@@ -93,16 +94,19 @@ class App extends React.Component {
                   }}
                 />
                 <Route exact path='/dashboard' component={Dashboard} />
-                <PrivateOnlyRoute exact path='/edit-profile' 
-                component={rprops => {
+                <PrivateOnlyRoute
+                  exact
+                  path='/edit-profile'
+                  component={rprops => {
                     return (
                       <EditProfile
                         rprops={rprops}
                         loggedInUser={this.state.loggedInUser}
                       />
                     );
-                  }} 
-                loggedInUser={this.state.loggedInUser} />
+                  }}
+                  loggedInUser={this.state.loggedInUser}
+                />
               </Switch>
             </section>
           </Fragment>

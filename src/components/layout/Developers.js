@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import UsersContext from '../../context/UsersContext';
 
 class Developers extends React.Component {
@@ -19,9 +20,9 @@ class Developers extends React.Component {
               <h2>{user.name}</h2>
               <p>{user.company}</p>
               <p>{user.location}</p>
-              <a href='profile.html' className='btn btn-primary'>
+              <Link to={`/profile/${user.id}`} className='btn btn-primary'>
                 View Profile
-              </a>
+              </Link>
             </div>
           </div>
       )
