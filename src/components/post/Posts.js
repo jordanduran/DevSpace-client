@@ -65,7 +65,7 @@ class Posts extends React.Component {
   };
 
 handleDeletePost = (postId) => {
-  fetch(`http://localhost:8000/api/post/${postId}`, {
+  fetch(`https://stormy-crag-28024.herokuapp.com/api/post/${postId}`, {
       method: 'delete',
       headers: {
         Accept: 'application/json',
