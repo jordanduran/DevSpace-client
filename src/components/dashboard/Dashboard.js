@@ -7,7 +7,7 @@ class Dashboard extends React.Component {
 
   handleDeleteUser = () => {
     const { loggedInUser } = this.context;
-    fetch(`http://localhost:8000/api/users/${loggedInUser.id}`, {
+    fetch(`https://stormy-crag-28024.herokuapp.com/api/users/${loggedInUser.id}`, {
       method: 'delete',
       headers: {
         Accept: 'application/json',

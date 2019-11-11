@@ -17,7 +17,7 @@ class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('http://localhost:8000/auth/signup', {
+    fetch('https://stormy-crag-28024.herokuapp.com/auth/signup', {
       method: 'post',
       body: JSON.stringify({
         name: this.state.name,

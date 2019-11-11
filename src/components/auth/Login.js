@@ -16,7 +16,7 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('http://localhost:8000/auth/login', {
+    fetch('https://stormy-crag-28024.herokuapp.com/auth/login', {
       method: 'post',
       body: JSON.stringify({
         email: this.state.email,

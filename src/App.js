@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   getPosts = () => {
-    fetch('http://localhost:8000/api/post')
+    fetch('https://stormy-crag-28024.herokuapp.com/api/post')
       .then(res => res.json())
       .then(posts => {
         this.setState({
@@ -40,7 +40,7 @@ class App extends React.Component {
   };
 
   getUsers = () => {
-    fetch('http://localhost:8000/api/users')
+    fetch('https://stormy-crag-28024.herokuapp.com/api/users')
       .then(res => res.json())
       .then(users => {
         this.setState({
