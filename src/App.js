@@ -55,7 +55,7 @@ class App extends React.Component {
     this.getUsers();
     this.getPosts();
     if(localStorage.getItem('user')) {
-      this.setState({ loggedInUser: localStorage.setItem('user'), loginMessage: 'Logged in!' });
+      this.setState({ loggedInUser: localStorage.getItem('user'), loginMessage: 'Logged in!' });
     }
   }
 
@@ -66,7 +66,7 @@ class App extends React.Component {
       loginMessage: this.state.loginMessage,
       loggedInUser: this.state.loggedInUser,
       setLoggedInUser: (user, message) => {
-        localStorage.setValue('user', user);
+        localStorage.setItem('user', user);
         this.setState({ loggedInUser: user, loginMessage: message });
       },
       setPosts: this.setPosts
