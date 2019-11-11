@@ -32,12 +32,20 @@ class Login extends React.Component {
       })
       .then(data => {
         this.context.setLoggedInUser(data.user, data.message);
+        console.log(data.message);
+        if(!data.message) {
+          this.setState({ message: 'Invalid login' });
+        }
         this.setState({ message: data.message }, () => {
           if (this.state.message !== 'Invalid login') {
             this.props.history.push('/dashboard');
           }
         });
-      });
+      })
+      .catch(err => {
+        console.log(err)
+        this.setState({ message: 'Invalid login' })
+      })
   }
 
   render() {

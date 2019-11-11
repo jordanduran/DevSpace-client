@@ -38,7 +38,7 @@ class Posts extends React.Component {
     const userId = this.props.loggedInUser.id;
     const post = e.target['post'].value;
     const avatar = this.props.loggedInUser.avatar;
-    const newPost = await fetch(`http://localhost:8000/api/post/`, {
+    const newPost = await fetch(`https://stormy-crag-28024.herokuapp.com/api/post/`, {
       method: 'post',
       body: JSON.stringify({
         users: userId,
