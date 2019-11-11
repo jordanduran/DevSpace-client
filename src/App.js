@@ -54,8 +54,8 @@ class App extends React.Component {
   componentDidMount() {
     this.getUsers();
     this.getPosts();
-    if(localStorage.getValue('user')) {
-      this.setState({ loggedInUser: localStorage.getValue('user'), loginMessage: 'Logged in!' });
+    if(localStorage.getItem('user')) {
+      this.setState({ loggedInUser: localStorage.setItem('user'), loginMessage: 'Logged in!' });
     }
   }
 
