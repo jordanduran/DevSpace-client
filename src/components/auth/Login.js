@@ -1,5 +1,6 @@
 import React from 'react';
 import UsersContext from '../../context/UsersContext';
+import config from '../../config';
 
 class Login extends React.Component {
   static contextType = UsersContext;
@@ -16,7 +17,7 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('https://stormy-crag-28024.herokuapp.com/auth/login', {
+    fetch(`${config.API_ENDPOINT}/auth/login`, {
       method: 'post',
       body: JSON.stringify({
         email: this.state.email,
@@ -31,8 +32,10 @@ class Login extends React.Component {
         return response.json();
       })
       .then(data => {
-        this.context.setLoggedInUser(data.user, data.message);
-        console.log(data.message);
+        if(data.message === 'Logged in!'){
+          this.context.setLoggedInUser(data.user, data.message);
+          localStorage.setItem('userId', data.userId);
+        }
         if(!data.message) {
           this.setState({ message: 'Invalid login' });
         }
