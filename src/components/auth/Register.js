@@ -25,7 +25,7 @@ class Register extends React.Component {
         password: this.state.password
       }),
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       }
     })
@@ -38,8 +38,6 @@ class Register extends React.Component {
         this.props.history.push('/dashboard');
       });
   }
-
-  Register()
 
   render() {
     return (
