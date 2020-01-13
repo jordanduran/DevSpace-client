@@ -1,13 +1,19 @@
 import React from 'react';
 import UsersContext from '../../context/UsersContext';
 import { Redirect, Link } from 'react-router-dom';
+import config from '../../config';
 
 class Dashboard extends React.Component {
+  
+  state = {
+    user: {},
+  }
+  
   static contextType = UsersContext;
 
   handleDeleteUser = () => {
     const { loggedInUser } = this.context;
-    fetch(`https://stormy-crag-28024.herokuapp.com/api/users/${loggedInUser.id}`, {
+    fetch(`${config.API_ENDPOINT}/api/users/${localStorage.getItem('userId')}`, {
       method: 'delete',
       headers: {
         Accept: 'application/json',
@@ -22,16 +28,32 @@ class Dashboard extends React.Component {
     this.props.history.push('/');
   };
 
+  componentDidMount = () => {
+    fetch(`${config.API_ENDPOINT}/api/users`)
+    .then(res => res.json())
+    .then(users => {
+      const loggedInUser = users.filter(user => user.id === parseInt(localStorage.getItem('userId')))[0];
+      this.setState({
+        user: loggedInUser,
+      });
+      return users;
+    })
+    .catch(err => console.log(err));
+  }
+
   render() {
-    if (!this.context.loggedInUser) {
+    if (!localStorage.getItem('user')) {
       return <Redirect to='/' />;
     }
+
+    const {user} = this.state;
+
     return (
       <section className='container'>
         <h1 className='large text-primary'>Dashboard</h1>
         <p className='lead'>
           <i className='fas fa-user'></i> Welcome{' '}
-          {this.context.loggedInUser.name}
+          {user.name}
         </p>
         <div className='dash-buttons'>
           <Link to='/edit-profile' className='btn btn-light'>
@@ -50,9 +72,9 @@ class Dashboard extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td>{this.context.loggedInUser.company}</td>
-              <td className='hide-sm'>{this.context.loggedInUser.website}</td>
-              <td className='hide-sm'>{this.context.loggedInUser.location}</td>
+              <td>{user.company}</td>
+              <td className='hide-sm'>{user.website}</td>
+              <td className='hide-sm'>{user.location}</td>
             </tr>
           </tbody>
         </table>
