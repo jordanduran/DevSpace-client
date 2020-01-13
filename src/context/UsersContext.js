@@ -5,7 +5,7 @@ const UsersContext = React.createContext({
     posts: [],
     loginMessage: '',
     loggedInUser: {},
-    setPosts: () => {}
+    setPosts: () => {},
 })
 
 export default UsersContext
