@@ -6,21 +6,19 @@ import config from '../../config';
 // import { connect } from 'react-redux';
 
 class Posts extends React.Component {
-
   static contextType = UsersContext;
 
   static defaultProps = {
     rprops: {},
     users: {},
-    loggedInUser: {},
-  }
-  
+    loggedInUser: {}
+  };
+
   renderPosts = () => {
     const { users } = this.props;
     const { posts } = this.context;
 
     return posts.map(post => {
-
       const user = users.filter(user => user.id === post.users)[0];
 
       return (
@@ -34,14 +32,21 @@ class Posts extends React.Component {
           <div>
             <p className='my-1'>{post.post}</p>
             <p className='post-date'>Posted on {post.date_created}</p>
-            {(this.props.loggedInUser !== null) ? 
-              parseInt(localStorage.getItem('userId'),10) === post.users && 
-              (
-                <button type='button' className='btn btn-danger' onClick={() => {this.handleDeletePost(post.id)}}>
+            {this.props.loggedInUser !== null ? (
+              parseInt(localStorage.getItem('userId'), 10) === post.users && (
+                <button
+                  type='button'
+                  className='btn btn-danger'
+                  onClick={() => {
+                    this.handleDeletePost(post.id);
+                  }}
+                >
                   <i className='fas fa-times'></i>
                 </button>
-              ): <></>
-            }
+              )
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       );
@@ -69,7 +74,6 @@ class Posts extends React.Component {
         return response.json();
       })
       .then(newPost => {
-        console.log(newPost);
         return newPost;
       })
       .catch(err => {
@@ -79,21 +83,21 @@ class Posts extends React.Component {
     this.context.setPosts([newPost, ...this.context.posts]);
   };
 
-handleDeletePost = (postId) => {
-  fetch(`${config.API_ENDPOINT}/api/post/${postId}`, {
+  handleDeletePost = postId => {
+    fetch(`${config.API_ENDPOINT}/api/post/${postId}`, {
       method: 'delete',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       }
     })
-    .then(data => data)
-    .catch(err => {
-      console.log(err);
-    });
+      .then(data => data)
+      .catch(err => {
+        console.log(err);
+      });
     const newPosts = this.context.posts.filter(post => post.id !== postId);
     this.context.setPosts(newPosts);
-}
+  };
 
   render() {
     return (

@@ -33,16 +33,13 @@ class Register extends React.Component {
         return response.json();
       })
       .then(data => {
-        console.log(data);
         this.context.setLoggedInUser(data.id, 'Logged in!');
 
         this.props.history.push('/dashboard');
       });
   }
 
-  Register() {
-    console.log('this.state', this.state);
-  }
+  Register()
 
   render() {
     return (

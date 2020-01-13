@@ -7,27 +7,22 @@ class Developers extends React.Component {
 
   renderUsers = () => {
     const { users } = this.context;
-    console.log(users);
-    return users.map((user) => {
+    return users.map(user => {
       return (
         <div className='profile bg-light' key={user.id}>
-            <img
-              className='round-img'
-              src={user.avatar}
-              alt=''
-            />
-            <div>
-              <h2>{user.name}</h2>
-              <p>{user.company}</p>
-              <p>{user.location}</p>
-              <Link to={`/profile/${user.id}`} className='btn btn-primary'>
-                View Profile
-              </Link>
-            </div>
+          <img className='round-img' src={user.avatar} alt='' />
+          <div>
+            <h2>{user.name}</h2>
+            <p>{user.company}</p>
+            <p>{user.location}</p>
+            <Link to={`/profile/${user.id}`} className='btn btn-primary'>
+              View Profile
+            </Link>
           </div>
-      )
-    })
-  }
+        </div>
+      );
+    });
+  };
 
   render() {
     return (
@@ -37,9 +32,7 @@ class Developers extends React.Component {
           <i className='fab fa-connectdevelop'></i> Browse and connect with
           developers
         </p>
-        <div className='profiles'>
-          {this.renderUsers()}
-        </div>
+        <div className='profiles'>{this.renderUsers()}</div>
       </section>
     );
   }

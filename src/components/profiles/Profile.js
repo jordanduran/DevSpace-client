@@ -5,12 +5,11 @@ class Profile extends React.Component {
   static contextType = UsersContext;
   render() {
     const id = parseInt(this.props.match.params.id, 10);
-    let user = {}
+    let user = {};
     if (this.context.users.length !== 0) {
       user = this.context.users.filter(user => user.id === id)[0];
     }
 
-    console.log(user);
     return (
       <div className='profile-top bg-primary p-2'>
         <img className='round-img my-1' src={user.avatar} alt='' />
@@ -41,23 +40,30 @@ class Profile extends React.Component {
             <i className='fab fa-instagram fa-2x'></i>
           </a>
         </div>
-        <div class="profile-about bg-light p-2">
-          <h2 class="text-primary">{user.name}'s bio</h2>
-          <p>
-            {user.bio}
-          </p>
-          <div class="line"></div>
-          <h2 class="text-primary">Skill Set</h2>
-          <div class="skills">
-            <div class="p-1"><i class="fa fa-check"></i> HTML</div>
-            <div class="p-1"><i class="fa fa-check"></i> CSS</div>
-            <div class="p-1"><i class="fa fa-check"></i> JavaScript</div>
-            <div class="p-1"><i class="fa fa-check"></i> Python</div>
-            <div class="p-1"><i class="fa fa-check"></i> C#</div>
+        <div class='profile-about bg-light p-2'>
+          <h2 class='text-primary'>{user.name}'s bio</h2>
+          <p>{user.bio}</p>
+          <div class='line'></div>
+          <h2 class='text-primary'>Skill Set</h2>
+          <div class='skills'>
+            <div class='p-1'>
+              <i class='fa fa-check'></i> HTML
+            </div>
+            <div class='p-1'>
+              <i class='fa fa-check'></i> CSS
+            </div>
+            <div class='p-1'>
+              <i class='fa fa-check'></i> JavaScript
+            </div>
+            <div class='p-1'>
+              <i class='fa fa-check'></i> Python
+            </div>
+            <div class='p-1'>
+              <i class='fa fa-check'></i> C#
+            </div>
           </div>
         </div>
       </div>
-      
     );
   }
 }
