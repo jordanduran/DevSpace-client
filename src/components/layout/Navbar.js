@@ -23,6 +23,8 @@ class Navbar extends React.Component {
                   (e) => {
                     e.preventDefault()
                     this.context.setLoggedInUser(null, 'loggedOut')
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('userId');
                     this.props.history.push('/')
                   }
                 }>
