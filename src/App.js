@@ -11,20 +11,21 @@ import Dashboard from './components/dashboard/Dashboard';
 import EditProfile from './components/profiles/EditProfile';
 import Profile from './components/profiles/Profile';
 import PrivateOnlyRoute from './Utils/PrivateOnlyRoute';
+import config from './config';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      loggedInUser: null,
+      loggedInUser: {},
       loginMessage: '',
       posts: []
     };
   }
 
   getPosts = () => {
-    fetch('https://stormy-crag-28024.herokuapp.com/api/post')
+    fetch(`${config.API_ENDPOINT}/api/post`)
       .then(res => res.json())
       .then(posts => {
         this.setState({
@@ -40,7 +41,7 @@ class App extends React.Component {
   };
 
   getUsers = () => {
-    fetch('https://stormy-crag-28024.herokuapp.com/api/users')
+    fetch(`${config.API_ENDPOINT}/api/users`)
       .then(res => res.json())
       .then(users => {
         this.setState({
@@ -69,7 +70,10 @@ class App extends React.Component {
         localStorage.setItem('user', user);
         this.setState({ loggedInUser: user, loginMessage: message });
       },
-      setPosts: this.setPosts
+      setPosts: this.setPosts,
+      getUsersInState: () => {
+        return this.state.users;
+      }
     };
 
     return (
