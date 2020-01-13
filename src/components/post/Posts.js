@@ -1,16 +1,28 @@
 import React from 'react';
 import UsersContext from '../../context/UsersContext';
+import config from '../../config';
 // import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 
 class Posts extends React.Component {
+
   static contextType = UsersContext;
+
+  static defaultProps = {
+    rprops: {},
+    users: {},
+    loggedInUser: {},
+  }
+  
   renderPosts = () => {
-    const { posts } = this.context;
     const { users } = this.props;
+    const { posts } = this.context;
+
     return posts.map(post => {
+
       const user = users.filter(user => user.id === post.users)[0];
+
       return (
         <div className='post bg-white p-1 my-1' key={post.id}>
           <div>
@@ -22,11 +34,14 @@ class Posts extends React.Component {
           <div>
             <p className='my-1'>{post.post}</p>
             <p className='post-date'>Posted on {post.date_created}</p>
-            {(this.props.loggedInUser.id === post.users && this.props.loggedInUser !== null) && (
-              <button type='button' className='btn btn-danger' onClick={() => {this.handleDeletePost(post.id)}}>
-                <i className='fas fa-times'></i>
-              </button>
-            )}
+            {(this.props.loggedInUser !== null) ? 
+              parseInt(localStorage.getItem('userId'),10) === post.users && 
+              (
+                <button type='button' className='btn btn-danger' onClick={() => {this.handleDeletePost(post.id)}}>
+                  <i className='fas fa-times'></i>
+                </button>
+              ): <></>
+            }
           </div>
         </div>
       );
@@ -35,10 +50,10 @@ class Posts extends React.Component {
 
   handleCreatePost = async e => {
     e.preventDefault();
-    const userId = this.props.loggedInUser.id;
+    const userId = parseInt(localStorage.getItem('userId'));
     const post = e.target['post'].value;
     const avatar = this.props.loggedInUser.avatar;
-    const newPost = await fetch(`https://stormy-crag-28024.herokuapp.com/api/post/`, {
+    const newPost = await fetch(`${config.API_ENDPOINT}/api/post/`, {
       method: 'post',
       body: JSON.stringify({
         users: userId,
@@ -65,7 +80,7 @@ class Posts extends React.Component {
   };
 
 handleDeletePost = (postId) => {
-  fetch(`https://stormy-crag-28024.herokuapp.com/api/post/${postId}`, {
+  fetch(`${config.API_ENDPOINT}/api/post/${postId}`, {
       method: 'delete',
       headers: {
         Accept: 'application/json',
@@ -87,7 +102,7 @@ handleDeletePost = (postId) => {
         <p className='lead'>
           <i className='fas fa-user'></i> Welcome to the community!
         </p>
-        {this.props.loggedInUser !== null && (
+        {localStorage.getItem('user') && (
           <div className='post-form'>
             <div className='bg-primary p'>
               <h3>Say Something...</h3>
