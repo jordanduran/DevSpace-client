@@ -1,68 +1,60 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Developers Space
+DevSpace is a full-stack social application created for developers anywhere in the world to be able to create their own profile along with their portfolio, and create posts. Created with HTML5, CSS3, SaaS, React, Express, PostgreSQL, Heroku, and Netlify for deployment.
+## Links
 
-In the project directory, you can run:
+Live Link to App
+    - https://developerspace.netlify.com/
 
-### `npm start`
+Link to Client Repo
+    - https://github.com/jordanduran/DevSpace-client
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Link to API Repo
+    - https://github.com/jordanduran/DevSpace-server
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## **Screenshots**
 
-### `npm test`
+###### ***Landing Page:***
+<img src="./../client/public/screenshots/landing.png" width="315px" />
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Upon inital app load the user is presented with the DevSpace landing page with a brief description of what the concept of the application is. The user has the option of creating an account or login.
 
-### `npm run build`
+###### ***Register Page:***
+<img src="./../client/public/screenshots/register.png" width="315px" />
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Register has user authentication
+- User creates an account
+  
+###### ***Login Page:***
+<img src="./../client/public/screenshots/login.png" width="315px" />
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- User enters their username/password
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+###### ***Explore Page:***
+<img src="./../client/public/screenshots/landing.png" width="315px" />
 
-### `npm run eject`
+- User can search for an existing pop up
+- User can select a category to filter shops
+  <img src="./../client/public/screenshots/landing.png" width="315px" />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- User can visit shop page by clicking shop card.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+###### ***Dashboard Page:***
+<img src="./../client/public/screenshots/dashboard.png" width="315px" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Upon register or login the user is redirected to the dashboard
+- User can edit their profile
+  
+###### ***Edit Profile Page:***
+<img src="./../client/public/screenshots/edit-profile.png" width="315px" />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- User can add personal information to their profile
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Technology Stack
+HTML5, CSS3, JavaScript, React, Node, Express, and PostgreSQL for the database.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ***Status***
+[![Netlify Status](https://api.netlify.com/api/v1/badges/660afacb-8383-40b3-a1cc-a6687d9d147b/deploy-status)](https://app.netlify.com/sites/developerspace/deploys)
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
