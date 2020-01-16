@@ -4,22 +4,24 @@ import { Redirect, Link } from 'react-router-dom';
 import config from '../../config';
 
 class Dashboard extends React.Component {
-  
   state = {
-    user: {},
-  }
-  
+    user: {}
+  };
+
   static contextType = UsersContext;
 
   handleDeleteUser = () => {
     const { loggedInUser } = this.context;
-    fetch(`${config.API_ENDPOINT}/api/users/${localStorage.getItem('userId')}`, {
-      method: 'delete',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+    fetch(
+      `${config.API_ENDPOINT}/api/users/${localStorage.getItem('userId')}`,
+      {
+        method: 'delete',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
-    })
+    )
       .then(data => data)
       .catch(err => {
         console.log(err);
@@ -30,30 +32,31 @@ class Dashboard extends React.Component {
 
   componentDidMount = () => {
     fetch(`${config.API_ENDPOINT}/api/users`)
-    .then(res => res.json())
-    .then(users => {
-      const loggedInUser = users.filter(user => user.id === parseInt(localStorage.getItem('userId')))[0];
-      this.setState({
-        user: loggedInUser,
-      });
-      return users;
-    })
-    .catch(err => console.log(err));
-  }
+      .then(res => res.json())
+      .then(users => {
+        this.context.setUsers(users);
+        const loggedInUser = users.filter(
+          user => user.id === parseInt(localStorage.getItem('userId'), 10)
+        )[0];
+        this.setState({
+          user: loggedInUser
+        });
+        return users;
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     if (!localStorage.getItem('user')) {
       return <Redirect to='/' />;
     }
 
-    const {user} = this.state;
-
+    const user = this.state.user;
     return (
       <section className='container'>
         <h1 className='large text-primary'>Dashboard</h1>
         <p className='lead'>
-          <i className='fas fa-user'></i> Welcome{' '}
-          {user.name}
+          <i className='fas fa-user'></i> Welcome {user.name}
         </p>
         <div className='dash-buttons'>
           <Link to='/edit-profile' className='btn btn-light'>

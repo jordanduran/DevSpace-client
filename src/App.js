@@ -20,7 +20,8 @@ class App extends React.Component {
       users: [],
       loggedInUser: {},
       loginMessage: '',
-      posts: []
+      posts: [],
+      user: {}
     };
   }
 
@@ -65,6 +66,11 @@ class App extends React.Component {
 
   render() {
     const value = {
+      setUsers: users => {
+        this.setState({
+          users
+        });
+      },
       posts: this.state.posts,
       users: this.state.users,
       loginMessage: this.state.loginMessage,

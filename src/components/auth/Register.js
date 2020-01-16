@@ -9,7 +9,8 @@ class Register extends React.Component {
       name: '',
       email: '',
       password: '',
-      password2: ''
+      password2: '',
+      user: {}
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,8 +34,8 @@ class Register extends React.Component {
         return response.json();
       })
       .then(data => {
-        this.context.setLoggedInUser(data.id, 'Logged in!');
-
+        this.context.setLoggedInUser(data.id.id, 'Logged in!');
+        localStorage.setItem('userId', data.id.id);
         this.props.history.push('/dashboard');
       });
   }

@@ -55,7 +55,7 @@ class Posts extends React.Component {
 
   handleCreatePost = async e => {
     e.preventDefault();
-    const userId = parseInt(localStorage.getItem('userId'));
+    const userId = parseInt(localStorage.getItem('userId'), 10);
     const post = e.target['post'].value;
     const avatar = this.props.loggedInUser.avatar;
     const newPost = await fetch(`${config.API_ENDPOINT}/api/post/`, {
@@ -74,6 +74,7 @@ class Posts extends React.Component {
         return response.json();
       })
       .then(newPost => {
+        console.log(newPost);
         return newPost;
       })
       .catch(err => {
