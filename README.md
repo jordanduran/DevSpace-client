@@ -16,40 +16,41 @@ Link to API Repo
 ## **Screenshots**
 
 ###### ***Landing Page:***
-<img src="./../client/public/screenshots/landing.png" width="315px" />
+<img src="https://github.com/jordanduran/DevSpace-client/blob/master/public/screenshots/landing.png" width="315px" />
 
 - Upon inital app load the user is presented with the DevSpace landing page with a brief description of what the concept of the application is. The user has the option of creating an account or login.
 
 ###### ***Register Page:***
-<img src="./../client/public/screenshots/register.png" width="315px" />
+<img src="https://github.com/jordanduran/DevSpace-client/blob/master/public/screenshots/register.png" width="315px" />
 
 - Register has user authentication
 - User creates an account
   
 ###### ***Login Page:***
-<img src="./../client/public/screenshots/login.png" width="315px" />
+<img src="https://github.com/jordanduran/DevSpace-client/blob/master/public/screenshots/login.png" width="315px" />
 
 - User enters their username/password
 
-###### ***Explore Page:***
-<img src="./../client/public/screenshots/landing.png" width="315px" />
-
-- User can search for an existing pop up
-- User can select a category to filter shops
-  <img src="./../client/public/screenshots/landing.png" width="315px" />
-
-- User can visit shop page by clicking shop card.
-
 ###### ***Dashboard Page:***
-<img src="./../client/public/screenshots/dashboard.png" width="315px" />
+<img src="https://github.com/jordanduran/DevSpace-client/blob/master/public/screenshots/dashboard.png" width="315px" />
 
 - Upon register or login the user is redirected to the dashboard
 - User can edit their profile
   
 ###### ***Edit Profile Page:***
-<img src="./../client/public/screenshots/edit-profile.png" width="315px" />
+<img src="https://github.com/jordanduran/DevSpace-client/blob/master/public/screenshots/edit-profile.png" width="315px" />
 
 - User can add personal information to their profile
+
+###### ***Developers Page:***
+<img src="https://github.com/jordanduran/DevSpace-client/blob/master/public/screenshots/developers.png" width="315px" />
+
+- Users can view all the existing users and view their profile
+
+###### ***Posts Page:***
+<img src="https://github.com/jordanduran/DevSpace-client/blob/master/public/screenshots/posts.png" width="315px" />
+
+- Users can create and delete posts
 
 
 ### Technology Stack
