@@ -100,12 +100,7 @@ class Register extends React.Component {
               value={this.state.value}
             />
           </div>
-          <input
-            type='submit'
-            className='btn btn-primary'
-            value='Submit'
-            onClick={() => this.Register()}
-          />
+          <input type='submit' className='btn btn-primary' value='Submit' />
         </form>
         <p className='my-1'>
           Already have an account? <a href='/login'>Sign In</a>
