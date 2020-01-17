@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Developer Space
 
-DevSpace is a full-stack social application created for developers anywhere in the world to be able to create their own profile along with their portfolio, and create posts. Created with HTML5, CSS3, SaaS, React, Express, PostgreSQL, Heroku, and Netlify for deployment.
+DevSpace is a full-stack social application created for developers anywhere in the world to be able to create their own profile along with their portfolio, and create posts.
 
 ## Links
 
