@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import UsersContext from '../../context/UsersContext';
 import config from '../../config';
 // import React, { useState } from 'react';
@@ -24,10 +25,10 @@ class Posts extends React.Component {
       return (
         <div className='post bg-white p-1 my-1' key={post.id}>
           <div>
-            <a href='profile.html'>
+            <Link to={`/profile/${user.id}`}>
               <img className='round-img' src={post.avatar} alt='' />
               <h4>{user.name}</h4>
-            </a>
+            </Link>
           </div>
           <div>
             <p className='my-1'>{post.post}</p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UsersContext from '../../context/UsersContext';
+import config from '../../config';
 
 class EditProfile extends React.Component {
   static contextType = UsersContext;
@@ -34,7 +35,7 @@ class EditProfile extends React.Component {
     const linkedin_url = e.target['linkedin'].value;
     const instagram_url = e.target['instagram'].value;
     const { id } = this.context.loggedInUser;
-    const user = await fetch(`http://localhost:8000/api/users/${id}`, {
+    const user = await fetch(`${config.API_ENDPOINT}/api/users/${id}`, {
       method: 'put',
       headers: {
         Accept: 'application/json',
