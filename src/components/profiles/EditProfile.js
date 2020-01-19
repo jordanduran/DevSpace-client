@@ -1,40 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import UsersContext from '../../context/UsersContext';
 import config from '../../config';
 
 class EditProfile extends React.Component {
+  _isMounted = false;
   static contextType = UsersContext;
 
   constructor(props) {
     super(props);
-    const { loggedInUser } = props;
     this.state = {
-      company: loggedInUser.company || '',
+      company: '',
       profileUpdated: '',
-      website: loggedInUser.website || '',
-      location: loggedInUser.location || '',
-      bio: loggedInUser.bio || '',
-      twitter_url: loggedInUser.twitter_url || '',
-      facebook_url: loggedInUser.facebook_url || '',
-      youtube_url: loggedInUser.youtube_url || '',
-      linkedin_url: loggedInUser.linkedin_url || '',
-      instagram_url: loggedInUser.instagram_url || ''
+      website: '',
+      location: '',
+      bio: '',
+      twitter_url: '',
+      facebook_url: '',
+      youtube_url: '',
+      linkedin_url: '',
+      instagram_url: ''
     };
   }
 
   handleSubmit = async e => {
     e.preventDefault();
-    const company = e.target['company'].value;
-    const website = e.target['website'].value;
-    const location = e.target['location'].value;
-    const bio = e.target['bio'].value;
-    const twitter_url = e.target['twitter'].value;
-    const facebook_url = e.target['facebook'].value;
-    const youtube_url = e.target['youtube'].value;
-    const linkedin_url = e.target['linkedin'].value;
-    const instagram_url = e.target['instagram'].value;
-    const { id } = this.context.loggedInUser;
+    const id = parseInt(localStorage.getItem('userId'), 10);
+
     const user = await fetch(`${config.API_ENDPOINT}/api/users/${id}`, {
       method: 'put',
       headers: {
@@ -42,15 +35,7 @@ class EditProfile extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        company,
-        website,
-        location,
-        bio,
-        twitter_url,
-        facebook_url,
-        youtube_url,
-        linkedin_url,
-        instagram_url
+        ...this.state
       })
     })
       .then(data => data)
@@ -58,20 +43,34 @@ class EditProfile extends React.Component {
         console.log(err);
       });
     const updatedUser = {
-      ...this.context.loggedInUser,
-      company,
-      website,
-      location,
-      bio,
-      twitter_url,
-      facebook_url,
-      youtube_url,
-      linkedin_url,
-      instagram_url
+      ...this.state
     };
     this.context.setLoggedInUser(updatedUser, 'Logged in!');
     alert('Profile updated!');
   };
+
+  componentDidMount = () => {
+    this._isMounted = true;
+    return axios
+      .get(`${config.API_ENDPOINT}/api/users`)
+      .then(data => {
+        const loggedInUser = data.data.filter(
+          user => user.id === parseInt(localStorage.getItem('userId'), 10)
+        )[0];
+
+        if (this._isMounted) {
+          this.setState({
+            ...loggedInUser
+          });
+        }
+      })
+      .catch(error => console.log(error));
+  };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   render() {
     return (
       <section className='container'>

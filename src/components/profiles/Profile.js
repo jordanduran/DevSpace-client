@@ -18,31 +18,43 @@ class Profile extends React.Component {
         <p className='lead'>Developer at {user.company}</p>
         <p>{user.location}</p>
         <div className='icons my-1'>
-          <Link to={user.website} target='_blank' rel='noopener noreferrer'>
+          <Link
+            to={user.website || ''}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <i className='fas fa-globe fa-2x'></i>
           </Link>
-          <Link to={user.twitter_url} target='_blank' rel='noopener noreferrer'>
+          <Link
+            to={user.twitter_url || ''}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <i className='fab fa-twitter fa-2x'></i>
           </Link>
           <Link
-            to={user.facebook_url}
+            to={user.facebook_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fab fa-facebook fa-2x'></i>
           </Link>
           <Link
-            to={user.linkedin_url}
+            to={user.linkedin_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fab fa-linkedin fa-2x'></i>
           </Link>
-          <Link to={user.youtube_url} target='_blank' rel='noopener noreferrer'>
+          <Link
+            to={user.youtube_url || ''}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <i className='fab fa-youtube fa-2x'></i>
           </Link>
           <Link
-            to={user.instagram_url}
+            to={user.instagram_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >

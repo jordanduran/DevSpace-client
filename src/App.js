@@ -96,7 +96,7 @@ class App extends React.Component {
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/developers' component={Developers} />
-                <Route exact path='/profile/:id' component={Profile} />
+                <Route path='/profile/:id' component={Profile} />
                 <Route
                   exact
                   path='/posts'
