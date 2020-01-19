@@ -34,9 +34,9 @@ img {
   width: 100%;
 }
 
-.text-primary {
+/* .text-primary h1 {
   margin-top: 6rem;
-}
+} */
 
 /* Utilities */
 .container {
@@ -44,8 +44,8 @@ img {
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
-  /* margin-top: 6rem; */
-  /* margin-bottom: 3rem; */
+  margin-top: 6rem;
+  margin-bottom: 3rem;
 }
 
 /* Text Styles*/
