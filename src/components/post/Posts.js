@@ -75,7 +75,6 @@ class Posts extends React.Component {
         return response.json();
       })
       .then(newPost => {
-        console.log(newPost);
         return newPost;
       })
       .catch(err => {
