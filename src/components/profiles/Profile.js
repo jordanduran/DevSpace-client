@@ -10,7 +10,7 @@ class Profile extends React.Component {
     if (this.context.users.length !== 0) {
       user = this.context.users.filter(user => user.id === id)[0];
     }
-    console.log(user.youtube_url);
+
     return (
       <div className='profile-top bg-primary p-2'>
         <img className='round-img my-1' src={user.avatar} alt='' />
