@@ -32,11 +32,11 @@ class Login extends React.Component {
         return response.json();
       })
       .then(data => {
-        if(data.message === 'Logged in!'){
+        if (data.message === 'Logged in!') {
           this.context.setLoggedInUser(data.user, data.message);
           localStorage.setItem('userId', data.userId);
         }
-        if(!data.message) {
+        if (!data.message) {
           this.setState({ message: 'Invalid login' });
         }
         this.setState({ message: data.message }, () => {
@@ -46,9 +46,9 @@ class Login extends React.Component {
         });
       })
       .catch(err => {
-        console.log(err)
-        this.setState({ message: 'Invalid login' })
-      })
+        console.log(err);
+        this.setState({ message: 'Invalid login' });
+      });
   }
 
   render() {
