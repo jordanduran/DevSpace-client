@@ -494,10 +494,6 @@ button {
 
 /* Mobile Styles */
 @media (max-width: 700px) {
-  .container {
-    margin-top: 6rem;
-  }
-
   .hide-sm {
     display: none;
   }
@@ -509,6 +505,7 @@ button {
 
   .large {
     font-size: 2rem;
+    margin-top: 9rem;
   }
 
   .lead {

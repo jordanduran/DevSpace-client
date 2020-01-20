@@ -21,7 +21,6 @@ class Posts extends React.Component {
 
     return posts.map(post => {
       const user = users.filter(user => user.id === post.users)[0];
-
       return (
         <div className='post bg-white p-1 my-1' key={post.id}>
           <div>
