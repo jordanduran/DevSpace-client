@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import UsersContext from '../../context/UsersContext';
 
 class Profile extends React.Component {

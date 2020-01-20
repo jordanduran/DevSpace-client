@@ -11,7 +11,6 @@ class Dashboard extends React.Component {
   static contextType = UsersContext;
 
   handleDeleteUser = () => {
-    const { loggedInUser } = this.context;
     fetch(
       `${config.API_ENDPOINT}/api/users/${localStorage.getItem('userId')}`,
       {

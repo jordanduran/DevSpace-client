@@ -28,7 +28,7 @@ class EditProfile extends React.Component {
     e.preventDefault();
     const id = parseInt(localStorage.getItem('userId'), 10);
 
-    const user = await fetch(`${config.API_ENDPOINT}/api/users/${id}`, {
+    await fetch(`${config.API_ENDPOINT}/api/users/${id}`, {
       method: 'put',
       headers: {
         Accept: 'application/json',
