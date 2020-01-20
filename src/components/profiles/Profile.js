@@ -27,48 +27,48 @@ class Profile extends React.Component {
         <p className='lead'>Developer at {user.company}</p>
         <p>{user.location}</p>
         <div className='icons my-1'>
-          <Link
-            to={user.website || ''}
+          <a
+            href={user.website || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fas fa-globe fa-2x'></i>
-          </Link>
-          <Link
-            to={user.twitter_url || ''}
+          </a>
+          <a
+            href={user.twitter_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fab fa-twitter fa-2x'></i>
-          </Link>
-          <Link
-            to={user.facebook_url || ''}
+          </a>
+          <a
+            href={user.facebook_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fab fa-facebook fa-2x'></i>
-          </Link>
-          <Link
-            to={user.linkedin_url || ''}
+          </a>
+          <a
+            href={user.linkedin_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fab fa-linkedin fa-2x'></i>
-          </Link>
-          <Link
-            to={user.youtube_url || ''}
+          </a>
+          <a
+            href={user.youtube_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fab fa-youtube fa-2x'></i>
-          </Link>
-          <Link
-            to={user.instagram_url || ''}
+          </a>
+          <a
+            href={user.instagram_url || ''}
             target='_blank'
             rel='noopener noreferrer'
           >
             <i className='fab fa-instagram fa-2x'></i>
-          </Link>
+          </a>
         </div>
         <div className='profile-about bg-light p-2'>
           <h2 className='text-primary'>{user.name}'s bio</h2>
