@@ -26,7 +26,15 @@ class Posts extends React.Component {
         <div className='post bg-white p-1 my-1' key={post.id}>
           <div>
             <Link to={`/profile/${user.id}`}>
-              <img className='round-img' src={user.avatar} alt='' />
+              {!user.avatar ? (
+                <img
+                  className='round-img'
+                  src='https://gravatar.com/avatar/8385556c89b788059f4edfc82735470a'
+                  alt=''
+                />
+              ) : (
+                <img className='round-img' src={user.avatar} alt='' />
+              )}
               <h4>{user.name}</h4>
             </Link>
           </div>

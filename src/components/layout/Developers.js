@@ -10,7 +10,15 @@ class Developers extends React.Component {
     return users.map(user => {
       return (
         <div className='profile bg-light' key={user.id}>
-          <img className='round-img' src={user.avatar} alt='' />
+          {!user.avatar ? (
+            <img
+              className='round-img'
+              src='https://gravatar.com/avatar/8385556c89b788059f4edfc82735470a'
+              alt=''
+            />
+          ) : (
+            <img className='round-img' src={user.avatar} alt='' />
+          )}
           <div>
             <h2>{user.name}</h2>
             <p>{user.company}</p>

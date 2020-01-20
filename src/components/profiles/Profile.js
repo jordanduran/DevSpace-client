@@ -13,7 +13,16 @@ class Profile extends React.Component {
 
     return (
       <div className='profile-top bg-primary p-2'>
-        <img className='round-img my-1' src={user.avatar} alt='' />
+        {!user.avatar ? (
+          <img
+            className='round-img'
+            src='https://gravatar.com/avatar/8385556c89b788059f4edfc82735470a'
+            alt=''
+          />
+        ) : (
+          <img className='round-img' src={user.avatar} alt='' />
+        )}
+        {/* <img className='round-img my-1' src={user.avatar} alt='' /> */}
         <h1 className='large'>{user.name}</h1>
         <p className='lead'>Developer at {user.company}</p>
         <p>{user.location}</p>
