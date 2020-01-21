@@ -16,49 +16,51 @@ class Posts extends React.Component {
   };
 
   renderPosts = () => {
-    const { users } = this.props;
-    const { posts } = this.context;
-
-    return posts.map(post => {
-      const user = users.filter(user => user.id === post.users)[0];
-      return (
-        <div className='post bg-white p-1 my-1' key={post.id}>
-          <div>
-            <Link to={`/profile/${user.id}`}>
-              {!user.avatar ? (
-                <img
-                  className='round-img'
-                  src='https://gravatar.com/avatar/8385556c89b788059f4edfc82735470a'
-                  alt=''
-                />
+    const { users = [] } = this.props;
+    const { posts = [] } = this.context;
+    if (users.length && posts.length) {
+      return posts.map(post => {
+        const user = users.filter(user => user.id === post.users)[0];
+        return (
+          <div className='post bg-white p-1 my-1' key={post.id}>
+            <div>
+              <Link to={`/profile/${user.id}`}>
+                {!user.avatar ? (
+                  <img
+                    className='round-img'
+                    src='https://gravatar.com/avatar/8385556c89b788059f4edfc82735470a'
+                    alt=''
+                  />
+                ) : (
+                  <img className='round-img' src={user.avatar} alt='' />
+                )}
+                <h4>{user.name}</h4>
+              </Link>
+            </div>
+            <div>
+              <p className='my-1'>{post.post}</p>
+              <p className='post-date'>Posted on {post.date_created}</p>
+              {this.props.loggedInUser !== null ? (
+                parseInt(localStorage.getItem('userId'), 10) === post.users && (
+                  <button
+                    type='button'
+                    className='btn btn-danger'
+                    onClick={() => {
+                      this.handleDeletePost(post.id);
+                    }}
+                  >
+                    <i className='fas fa-times'></i>
+                  </button>
+                )
               ) : (
-                <img className='round-img' src={user.avatar} alt='' />
+                <></>
               )}
-              <h4>{user.name}</h4>
-            </Link>
+            </div>
           </div>
-          <div>
-            <p className='my-1'>{post.post}</p>
-            <p className='post-date'>Posted on {post.date_created}</p>
-            {this.props.loggedInUser !== null ? (
-              parseInt(localStorage.getItem('userId'), 10) === post.users && (
-                <button
-                  type='button'
-                  className='btn btn-danger'
-                  onClick={() => {
-                    this.handleDeletePost(post.id);
-                  }}
-                >
-                  <i className='fas fa-times'></i>
-                </button>
-              )
-            ) : (
-              <></>
-            )}
-          </div>
-        </div>
-      );
-    });
+        );
+      });
+    }
+    return <div>Loading...</div>;
   };
 
   handleCreatePost = async e => {

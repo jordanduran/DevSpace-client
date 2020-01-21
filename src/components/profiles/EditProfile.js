@@ -24,10 +24,23 @@ class EditProfile extends React.Component {
     };
   }
 
+  correctifyLink = url => {
+    if (url) if (!url.includes('https://')) return `https://${url}`;
+
+    return url;
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
     const id = parseInt(localStorage.getItem('userId'), 10);
-
+    await this.setState({
+      twitter_url: this.correctifyLink(this.state.twitter_url),
+      facebook_url: this.correctifyLink(this.state.facebook_url),
+      youtube_url: this.correctifyLink(this.state.youtube_url),
+      linkedin_url: this.correctifyLink(this.state.linkedin_url),
+      instagram_url: this.correctifyLink(this.state.instagram_url)
+    });
+    console.log(this.state.twitter_url);
     await fetch(`${config.API_ENDPOINT}/api/users/${id}`, {
       method: 'put',
       headers: {
